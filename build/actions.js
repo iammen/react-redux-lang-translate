@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.setTranslation = exports.setLocale = undefined;
+exports.setLocale = undefined;
 
 var _types = require('./types');
 
@@ -16,15 +16,6 @@ var setLocale = exports.setLocale = function setLocale(locale) {
   return {
     type: types.SET_LOCALE,
     locale: locale,
-    callback: callback
-  };
-};
-
-var setTranslation = exports.setTranslation = function setTranslation(translation) {
-  var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
-  return {
-    type: types.SET_TRANSLATION,
-    translation: translation,
     callback: callback
   };
 };

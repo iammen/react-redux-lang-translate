@@ -1,8 +1,5 @@
-const SET_LOCALE = '@react-redux-multilple-language/SET_LOCALE';
-
-const SET_TRANSLATION = '@react-redux-multilple-language/SET_TRANSLATION';
+const SET_LOCALE = '@react-redux-lang-translate/SET_LOCALE';
 
 export {
-  SET_LOCALE,
-  SET_TRANSLATION
+  SET_LOCALE
 };

@@ -15,6 +15,7 @@ exports.default = function () {
       return _extends({}, state, {
         locale: action.locale
       });
+
     default:
       return state;
   }

@@ -5,9 +5,3 @@ export const setLocale = (locale, callback = () => {}) => ({
   locale,
   callback
 });
-
-export const setTranslation = (translation, callback = () => {}) => ({
-  type: types.SET_TRANSLATION,
-  translation,
-  callback
-});

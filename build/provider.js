@@ -30,24 +30,36 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var MultiLangProvider = function (_React$Component) {
-  _inherits(MultiLangProvider, _React$Component);
+var LangTranslateProvider = function (_React$Component) {
+  _inherits(LangTranslateProvider, _React$Component);
 
-  function MultiLangProvider() {
-    var _ref;
+  function LangTranslateProvider(props) {
+    _classCallCheck(this, LangTranslateProvider);
 
-    var _temp, _this, _ret;
+    var _this = _possibleConstructorReturn(this, (LangTranslateProvider.__proto__ || Object.getPrototypeOf(LangTranslateProvider)).call(this, props));
 
-    _classCallCheck(this, MultiLangProvider);
+    _this.addTranslation = function (translation) {
+      var arrObj = [_this._translations, translation];
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+      /**
+       * Iterate the array and the keys and take the values 
+       * as new property of the result object.
+       */
+      var newTranslations = arrObj.reduce(function (previousValue, currentValue) {
+        Object.keys(currentValue).forEach(function (key) {
+          previousValue[key] = currentValue[key];
+        });
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = MultiLangProvider.__proto__ || Object.getPrototypeOf(MultiLangProvider)).call.apply(_ref, [this].concat(args))), _this), _this.translate = function (key, placeholders, isHTML) {
+        return previousValue;
+      }, {});
+
+      _this._translations = newTranslations;
+    };
+
+    _this.translate = function (key, placeholders, isHTML) {
       var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
 
-      var result = (0, _utils.translateKey)(key, _this.props.translations[_this.props.locale]['messages']);
+      var result = (0, _utils.translateKey)(key, _this._translations[_this.props.locale]['messages']);
 
       var tagName = options.tagName || 'div';
 
@@ -58,10 +70,37 @@ var MultiLangProvider = function (_React$Component) {
       var finalResult = (0, _utils.supplant)(result, placeholders);
 
       return isHTML ? _react2.default.createElement(tagName, { dangerouslySetInnerHTML: (0, _utils.createHTMLMarkup)(finalResult) }, null) : finalResult;
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    };
+
+    _this._translations = _this.props.translations;
+    return _this;
   }
 
-  _createClass(MultiLangProvider, [{
+  /**
+   * Add additional translation
+   * 
+   * @example
+   * const translation = {
+   *   th: { landing: { feature: 'คุณสมบัติ' } },
+   *   en: { landing: { feature: 'Feature' } }
+   * };
+   * 
+   * 
+   * @param {Object} translation Additional translation
+   */
+
+
+  /**
+   * Translate language
+   * 
+   * @param {String} key  Object path that need to translate
+   * @param {Object} placeholders
+   * @param {Boolean} isHTML
+   * @param {Object} options
+   */
+
+
+  _createClass(LangTranslateProvider, [{
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -72,21 +111,21 @@ var MultiLangProvider = function (_React$Component) {
     }
   }]);
 
-  return MultiLangProvider;
+  return LangTranslateProvider;
 }(_react2.default.Component);
 
-MultiLangProvider.propTypes = {
+LangTranslateProvider.propTypes = {
   translations: _propTypes2.default.object
 };
-MultiLangProvider.defaultProps = {
+LangTranslateProvider.defaultProps = {
   translations: {}
 };
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  var lang = state.lang;
+  var translation = state.translation;
 
-  return _extends({}, lang);
+  return _extends({}, translation);
 };
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps)(MultiLangProvider);
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(LangTranslateProvider);

@@ -8,7 +8,13 @@ import {
   translateKey
 } from './utils';
 
-class MultiLangProvider extends React.Component {
+class LangTranslateProvider extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this._translations = this.props.translations;
+  }
 
   static propTypes = {
     translations: PropTypes.object
@@ -18,10 +24,48 @@ class MultiLangProvider extends React.Component {
     translations: {}
   };
 
+  /**
+   * Add additional translation
+   * 
+   * @example
+   * const translation = {
+   *   th: { landing: { feature: 'คุณสมบัติ' } },
+   *   en: { landing: { feature: 'Feature' } }
+   * };
+   * 
+   * 
+   * @param {Object} translation Additional translation
+   */
+  addTranslation = (translation) => {
+    const arrObj = [this._translations, translation];
+
+    /**
+     * Iterate the array and the keys and take the values 
+     * as new property of the result object.
+     */
+    const newTranslations = arrObj.reduce((previousValue, currentValue) => {
+      Object.keys(currentValue).forEach((key) => {
+        previousValue[key] = currentValue[key];
+      });
+
+      return previousValue;
+    }, {});
+
+    this._translations = newTranslations;
+  }
+
+  /**
+   * Translate language
+   * 
+   * @param {String} key  Object path that need to translate
+   * @param {Object} placeholders
+   * @param {Boolean} isHTML
+   * @param {Object} options
+   */
   translate = (key, placeholders, isHTML, options = {}) => {
     const result = translateKey(
       key,
-      this.props.translations[this.props.locale]['messages']
+      this._translations[this.props.locale]['messages']
     );
 
     const tagName = options.tagName || 'div';
@@ -51,10 +95,10 @@ class MultiLangProvider extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { lang } = state;
+  const { translation } = state;
   return {
-    ...lang
+    ...translation
   };
 }
 
-export default connect(mapStateToProps)(MultiLangProvider)
+export default connect(mapStateToProps)(LangTranslateProvider)
