@@ -105,7 +105,12 @@ var LangTranslateProvider = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         _context.TranslateProvider,
-        { value: this.translate },
+        {
+          value: {
+            addTranslation: this.addTranslation,
+            translate: this.translate
+          }
+        },
         this.props.children
       );
     }

@@ -10,8 +10,13 @@ import { TranslateConsumer } from './context';
 function withTranslate(WrappedComponent) {
   return React.forwardRef((props, ref) => (
     <TranslateConsumer>
-      {translate => (
-        <WrappedComponent {...props} translate={translate} ref={ref} />
+      {({addTranslation, translate}) => (
+        <WrappedComponent
+          {...props}
+          addTranslation={addTranslation}
+          translate={translate}
+          ref={ref}
+        />
       )}
     </TranslateConsumer>
   ))

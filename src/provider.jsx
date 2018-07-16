@@ -87,7 +87,12 @@ class LangTranslateProvider extends React.Component {
 
   render() {
     return (
-      <TranslateProvider value={this.translate}>
+      <TranslateProvider
+        value={{
+          addTranslation: this.addTranslation,
+          translate: this.translate
+        }}
+      >
         {this.props.children}
       </TranslateProvider> 
     );

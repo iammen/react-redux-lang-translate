@@ -25,8 +25,14 @@ function withTranslate(WrappedComponent) {
     return _react2.default.createElement(
       _context.TranslateConsumer,
       null,
-      function (translate) {
-        return _react2.default.createElement(WrappedComponent, _extends({}, props, { translate: translate, ref: ref }));
+      function (_ref) {
+        var addTranslation = _ref.addTranslation,
+            translate = _ref.translate;
+        return _react2.default.createElement(WrappedComponent, _extends({}, props, {
+          addTranslation: addTranslation,
+          translate: translate,
+          ref: ref
+        }));
       }
     );
   });
