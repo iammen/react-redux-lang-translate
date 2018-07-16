@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.TranslateActions = exports.TranslateProvider = exports.withTranslate = exports.TranslateReducer = undefined;
+exports.withTranslate = exports.TranslateActions = exports.TranslateProvider = exports.TranslateReducer = undefined;
 
 var _reducers = require('./reducers');
 
@@ -26,6 +26,6 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.TranslateReducer = _reducers2.default;
-exports.withTranslate = _withTranslate2.default;
 exports.TranslateProvider = _provider2.default;
 exports.TranslateActions = TranslateActions;
+exports.withTranslate = _withTranslate2.default;
