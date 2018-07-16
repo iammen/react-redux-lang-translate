@@ -4,7 +4,7 @@
   "description": "Multiple langauge translation component for React using HOC and Redux",
   "main": "build/index.js",
   "scripts": {
-    "build": "BABEL_ENV=production babel --watch src --out-dir build",
+    "build": "SET BABEL_ENV=production && babel --watch src --out-dir build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
