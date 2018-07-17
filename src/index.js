@@ -1,11 +1,11 @@
+import * as TranslateActions from './actions';
+import TranslateProvider from './provider';
 import TranslateReducer from './reducers';
 import withTranslate from './withTranslate';
-import TranslateProvider from './provider';
-import * as TranslateActions from './actions';
 
 export {
-  TranslateReducer,
-  TranslateProvider,
   TranslateActions,
+  TranslateProvider,
+  TranslateReducer,
   withTranslate
 };
