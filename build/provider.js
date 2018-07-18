@@ -18,6 +18,10 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactRedux = require('react-redux');
 
+var _lodash = require('lodash.merge');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
 var _context = require('./context');
 
 var _utils = require('./utils');
@@ -39,7 +43,7 @@ var LangTranslateProvider = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (LangTranslateProvider.__proto__ || Object.getPrototypeOf(LangTranslateProvider)).call(this, props));
 
     _this.addTranslation = function (translation) {
-      var newTranslations = (0, _utils.extend)(_this._translations, translation);
+      var newTranslations = (0, _lodash2.default)(_this._translations, translation);
       _this._translations = newTranslations;
     };
 
@@ -71,7 +75,6 @@ var LangTranslateProvider = function (_React$Component) {
    *   th: { landing: { feature: 'คุณสมบัติ' } },
    *   en: { landing: { feature: 'Feature' } }
    * };
-   * 
    * 
    * @param {Object} translation Additional translation
    */

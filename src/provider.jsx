@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import merge from 'lodash.merge';
 import { TranslateProvider } from './context';
 import {
   createHTMLMarkup,
-  extend,
   supplant,
   translateKey
 } from './utils';
@@ -34,11 +34,10 @@ class LangTranslateProvider extends React.Component {
    *   en: { landing: { feature: 'Feature' } }
    * };
    * 
-   * 
    * @param {Object} translation Additional translation
    */
   addTranslation = (translation) => {
-    const newTranslations = extend(this._translations, translation);
+    const newTranslations = merge(this._translations, translation);
     this._translations = newTranslations;
   }
 
