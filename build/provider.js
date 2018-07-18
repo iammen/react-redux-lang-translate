@@ -18,9 +18,9 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactRedux = require('react-redux');
 
-var _lodash = require('lodash.merge');
+var _merge = require('lodash/merge');
 
-var _lodash2 = _interopRequireDefault(_lodash);
+var _merge2 = _interopRequireDefault(_merge);
 
 var _context = require('./context');
 
@@ -43,7 +43,7 @@ var LangTranslateProvider = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (LangTranslateProvider.__proto__ || Object.getPrototypeOf(LangTranslateProvider)).call(this, props));
 
     _this.addTranslation = function (translation) {
-      var newTranslations = (0, _lodash2.default)(_this._translations, translation);
+      var newTranslations = (0, _merge2.default)(_this._translations, translation);
       _this._translations = newTranslations;
     };
 
