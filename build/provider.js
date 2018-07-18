@@ -39,20 +39,7 @@ var LangTranslateProvider = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (LangTranslateProvider.__proto__ || Object.getPrototypeOf(LangTranslateProvider)).call(this, props));
 
     _this.addTranslation = function (translation) {
-      var arrObj = [_this._translations, translation];
-
-      /**
-       * Iterate the array and the keys and take the values 
-       * as new property of the result object.
-       */
-      var newTranslations = arrObj.reduce(function (previousValue, currentValue) {
-        Object.keys(currentValue).forEach(function (key) {
-          previousValue[key] = currentValue[key];
-        });
-
-        return previousValue;
-      }, {});
-
+      var newTranslations = (0, _utils.extend)(_this._translations, translation);
       _this._translations = newTranslations;
     };
 

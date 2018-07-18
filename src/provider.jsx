@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { TranslateProvider } from './context';
 import {
   createHTMLMarkup,
+  extend,
   supplant,
   translateKey
 } from './utils';
@@ -37,20 +38,7 @@ class LangTranslateProvider extends React.Component {
    * @param {Object} translation Additional translation
    */
   addTranslation = (translation) => {
-    const arrObj = [this._translations, translation];
-
-    /**
-     * Iterate the array and the keys and take the values 
-     * as new property of the result object.
-     */
-    const newTranslations = arrObj.reduce((previousValue, currentValue) => {
-      Object.keys(currentValue).forEach((key) => {
-        previousValue[key] = currentValue[key];
-      });
-
-      return previousValue;
-    }, {});
-
+    const newTranslations = extend(this._translations, translation);
     this._translations = newTranslations;
   }
 
